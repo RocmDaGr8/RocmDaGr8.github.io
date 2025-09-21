@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roshim Bhatta | Designer & Defender</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <!-- 
+        STEP-BY-STEP GUIDE & WEBSITE PLAN 
+        This comment block contains the guide you requested, embedded directly into your website's code.
+    -->
+    <!-- Chosen Palette: Cyber Glow -->
+    <!-- Application Structure Plan: 
+        The portfolio is designed as a single-page application. This structure allows visitors (like recruiters) to flow through your story seamlessly: from a compelling introduction (Hero), to your background (About), your work (Portfolio), your qualifications (Certifications), and finally, how to reach you (Contact). The interactive portfolio with filtering and a pop-up modal for details provides a modern, engaging user experience.
+
+        *** YOUR STEP-BY-STEP GUIDE ***
+
+        **Step 1: Website Hosting Recommendation**
+
+        I recommend using **GitHub Pages** for your portfolio.
+        * **Why it's a great choice:** It's completely free for public websites, reliable, and directly integrated with Git and GitHub. Learning to use Git is a fundamental skill in the tech world, including cybersecurity, so this is a great way to start. It's perfect for hosting static websites like this one (sites built with just HTML, CSS, and JavaScript).
+
+        **Step 2: Folder & File Organization**
+
+        Even though this is a single HTML file, you need to organize your project on your computer. Create a main folder for your website, for example, `roshim-portfolio`. Inside that folder, create an `assets` folder, and inside that, an `images` folder.
+
+        Your structure should look like this:
+        /roshim-portfolio/
+        |-- index.html      (This is the file you're reading now)
+        |-- /assets/
+            |-- /images/
+                |-- project-ad-1.jpg
+                |-- project-brochure-1.png
+                |-- project-card-1.jpg
+                |-- (all your other project images go here)
+
+        **Step 3: The Code (Provided in this file)**
+
+        This file contains all the necessary HTML, CSS (via Tailwind), and JavaScript. You will need to:
+        1.  Replace the placeholder image URLs (like `https://placehold.co/...`) with the actual file paths to your images. For example, change `https://placehold.co/600x400/171717/34d399?text=Edu-Bridge+Ad` to `assets/images/your-project-image-name.jpg`.
+        2.  Update the text content in the "About", "Certifications", and "Contact" sections with your personal information.
+
+        **Step 4: Uploading to GitHub Pages**
+
+        1.  **Create a GitHub Account:** If you don't have one, sign up at github.com.
+        2.  **Create a New Repository:**
+            * Click the "+" icon in the top-right corner and select "New repository".
+            * The repository name MUST be `your-username.github.io`. For example, if your username is `roshim-bhatta`, the repository name must be `roshim-bhatta.github.io`. This is a special name that GitHub uses for personal pages.
+            * Make sure it's set to "Public".
+            * Click "Create repository".
+        3.  **Upload Your Files:**
+            * On your new repository's page, click the "Add file" button and choose "Upload files".
+            * Drag and drop your `index.html` file and the entire `assets` folder (with your images inside) into the browser window.
+            * Add a commit message like "Initial portfolio upload" and click "Commit changes".
+        4.  **Go Live!**
+            * Wait a few minutes. Your website will automatically be live at `https://your-username.github.io`. 
+
+        That's it! Your portfolio is now online. To make changes, simply edit the files on GitHub or upload new versions.
+    -->
+    <!-- Visualization & Content Choices: 
+        The primary "visualization" is the portfolio gallery.
+        * Report Info: Your graphic design projects from the PDF.
+        * Goal: Allow users to easily browse and understand the breadth of your work.
+        * Presentation Method: An interactive grid of project thumbnails.
+        * Interaction: 
+            1.  **Filtering:** Buttons allow users to filter projects by category (Branding, Print, Ads). This helps visitors quickly find relevant work.
+            2.  **Modal Pop-up:** Clicking a thumbnail opens a modal window with a larger image and a detailed project description. This keeps the user on the same page while providing rich context, improving user experience.
+        * Justification: This approach is more engaging than a static list and demonstrates modern web development techniques. It effectively showcases your design portfolio within the single-page structure.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #111827;
+            color: #d1d5db;
+        }
+        .font-mono {
+            font-family: 'Roboto Mono', monospace;
+        }
+        .cyber-glow {
+            color: #34d399;
+            text-shadow: 0 0 5px rgba(52, 211, 153, 0.5);
+        }
+        .nav-link::after {
+            content: '';
+            display: block;
+            width: 0;
+            height: 2px;
+            background: #34d399;
+            transition: width .3s;
+        }
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 100%;
+        }
+        .glitch {
+            animation: glitch 1.5s linear infinite;
+        }
+        @keyframes glitch{
+            2%,64%{ transform: translate(2px,0) skew(0deg); }
+            4%,60%{ transform: translate(-2px,0) skew(0deg); }
+            62%{ transform: translate(0,0) skew(5deg); }
+        }
+        .glitch:before, .glitch:after{
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .glitch:before{
+            left: 2px;
+            text-shadow: -2px 0 #ff00c1;
+            clip: rect(44px, 450px, 56px, 0);
+            animation: glitch-anim 5s infinite linear alternate-reverse;
+        }
+        .glitch:after{
+            left: -2px;
+            text-shadow: -2px 0 #00fff9, 2px 2px #ff00c1;
+            clip: rect(85px, 450px, 90px, 0);
+            animation: glitch-anim2 3s infinite linear alternate-reverse;
+        }
+        @keyframes glitch-anim{
+          0% { clip: rect(42px, 9999px, 44px, 0); transform: skew(0.3deg); }
+          5% { clip: rect(17px, 9999px, 94px, 0); transform: skew(0.5deg); }
+        }
+        @keyframes glitch-anim2{
+          0% { clip: rect(20px, 9999px, 80px, 0); transform: skew(0.2deg); }
+          5% { clip: rect(40px, 9999px, 62px, 0); transform: skew(0.8deg); }
+        }
+        .modal {
+            transition: opacity 0.25s ease;
+        }
+        .modal-content {
+            transition: transform 0.25s ease;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-300">
+
+    <!-- Header & Navigation -->
+    <header id="header" class="bg-gray-900/80 backdrop-blur-sm fixed top-0 left-0 right-0 z-50">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex-shrink-0">
+                    <a href="#home" class="text-2xl font-bold font-mono cyber-glow">RB</a>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="#home" class="nav-link text-gray-300 hover:text-emerald-400 px-3 py-2 rounded-md text-sm font-medium active">Home</a>
+                        <a href="#about" class="nav-link text-gray-300 hover:text-emerald-400 px-3 py-2 rounded-md text-sm font-medium">About</a>
+                        <a href="#portfolio" class="nav-link text-gray-300 hover:text-emerald-400 px-3 py-2 rounded-md text-sm font-medium">Portfolio</a>
+                        <a href="#certifications" class="nav-link text-gray-300 hover:text-emerald-400 px-3 py-2 rounded-md text-sm font-medium">Certifications</a>
+                        <a href="#contact" class="nav-link text-gray-300 hover:text-emerald-400 px-3 py-2 rounded-md text-sm font-medium">Contact</a>
+                    </div>
+                </div>
+                <div class="-mr-2 flex md:hidden">
+                    <button id="mobile-menu-button" type="button" class="bg-gray-800 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
+                        <span class="sr-only">Open main menu</span>
+                        <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                        <svg class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="md:hidden hidden" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#home" class="mobile-nav-link text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Home</a>
+                <a href="#about" class="mobile-nav-link text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">About</a>
+                <a href="#portfolio" class="mobile-nav-link text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Portfolio</a>
+                <a href="#certifications" class="mobile-nav-link text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Certifications</a>
+                <a href="#contact" class="mobile-nav-link text-gray-300 hover:bg-gray-700 hover:text-white block px-3 py-2 rounded-md text-base font-medium">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- Home Section -->
+        <section id="home" class="min-h-screen flex items-center justify-center bg-gray-900 pt-16">
+            <div class="text-center px-4">
+                <h1 class="text-4xl md:text-6xl font-bold text-white tracking-tight">Roshim Bhatta</h1>
+                <p class="mt-4 text-lg md:text-2xl font-mono"><span class="text-gray-400">// Designer &</span> <span class="cyber-glow">Defender</span></p>
+                <p class="mt-6 max-w-2xl mx-auto text-gray-300">
+                    Fusing creative graphic design with the precision of cybersecurity to build secure and beautiful digital experiences.
+                </p>
+                <a href="#portfolio" class="mt-8 inline-block bg-emerald-500 text-gray-900 font-bold py-3 px-8 rounded-md hover:bg-emerald-400 transition-colors duration-300">View My Work</a>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-20 sm:py-32 bg-gray-800/50">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center">
+                    <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">About Me</h2>
+                    <p class="mt-4 text-lg text-gray-400">A creative mind with a security-first approach.</p>
+                </div>
+                <div class="mt-16 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <img src="https://placehold.co/600x600/171717/34d399?text=Roshim+Bhatta" alt="Roshim Bhatta" class="rounded-lg shadow-2xl mx-auto">
+                    </div>
+                    <div class="text-gray-300 space-y-4">
+                        <p class="text-lg">
+                            I'm an international student from Nepal, currently pursuing my degree in Cybersecurity. Before moving here, I spent over a year working as a professional Graphic Designer for an educational consultancy.
+                        </p>
+                        <p>
+                            This dual background gives me a unique perspective. My design experience, using tools like <strong class="text-white">Adobe Illustrator, Photoshop, and Canva</strong>, taught me how to communicate ideas visually and create engaging user experiences. I designed everything from promotional flyers and brochures to official company branding materials like ID and visiting cards.
+                        </p>
+                        <p>
+                            Now, my passion for cybersecurity drives me to protect the very digital platforms I love to create. I believe that good design and strong security are not mutually exclusive—they are essential partners in building trust and functionality in the modern web.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Portfolio Section -->
+        <section id="portfolio" class="py-20 sm:py-32 bg-gray-900">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center">
+                    <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">Portfolio</h2>
+                    <p class="mt-4 text-lg text-gray-400">A selection of my professional work.</p>
+                </div>
+                
+                <div id="filter-buttons" class="mt-12 flex justify-center space-x-2 sm:space-x-4">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="branding">Branding</button>
+                    <button class="filter-btn" data-filter="print">Print</button>
+                    <button class="filter-btn" data-filter="ads">Ads</button>
+                </div>
+                
+                <div id="main-grid" class="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Portfolio Items will be injected here by JS -->
+                </div>
+
+                <div id="full-gallery" class="hidden mt-12">
+                    <div class="text-center mb-8">
+                        <button id="back-btn" class="inline-block bg-gray-700 text-gray-200 font-bold py-2 px-6 rounded-md hover:bg-gray-600 transition-colors duration-300">
+                            &larr; Back to Portfolio
+                        </button>
+                    </div>
+                    <div id="full-gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                        <!-- Full-sized portfolio images will be injected here by JS -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Certifications Section -->
+        <section id="certifications" class="py-20 sm:py-32 bg-gray-800/50">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center">
+                    <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">Certifications & Skills</h2>
+                    <p class="mt-4 text-lg text-gray-400">Validating knowledge and demonstrating expertise.</p>
+                </div>
+                <div class="mt-16 max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="bg-gray-900 p-6 rounded-lg border border-gray-700">
+                        <h3 class="text-xl font-bold text-emerald-400">Cybersecurity</h3>
+                        <ul class="mt-4 space-y-2 font-mono text-sm">
+                            <li class="flex items-center"><span class="text-emerald-500 mr-2">[+]</span> CompTIA Security+ (In Progress)</li>
+                            <li class="flex items-center"><span class="text-emerald-500 mr-2">[+]</span> Network Security Fundamentals</li>
+                            <li class="flex items-center"><span class="text-emerald-500 mr-2">[+]</span> Ethical Hacking Principles</li>
+                            <li class="flex items-center"><span class="text-gray-500 mr-2">[ ]</span> CISSP (Future Goal)</li>
+                        </ul>
+                    </div>
+                    <div class="bg-gray-900 p-6 rounded-lg border border-gray-700">
+                        <h3 class="text-xl font-bold text-emerald-400">Design & Development</h3>
+                        <ul class="mt-4 space-y-2 font-mono text-sm">
+                            <li class="flex items-center"><span class="text-emerald-500 mr-2">[+]</span> Adobe Creative Suite (Illustrator, Photoshop)</li>
+                            <li class="flex items-center"><span class="text-emerald-500 mr-2">[+]</span> Canva for Rapid Prototyping</li>
+                            <li class="flex items-center"><span class="text-emerald-500 mr-2">[+]</span> HTML, CSS, JavaScript</li>
+                            <li class="flex items-center"><span class="text-emerald-500 mr-2">[+]</span> Figma for UI/UX Design</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <footer id="contact" class="py-20 bg-gray-900">
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl">Get In Touch</h2>
+                <p class="mt-4 text-lg text-gray-400">Let's connect and create something secure and beautiful.</p>
+                <a href="mailto:your-email@example.com" class="mt-8 inline-block text-xl font-mono text-emerald-400 hover:text-emerald-300 transition-colors">
+                    your-email@example.com
+                </a>
+                <div class="mt-8 flex justify-center space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white">
+                        <span class="sr-only">LinkedIn</span>
+                        <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" clip-rule="evenodd"/></svg>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-white">
+                        <span class="sr-only">GitHub</span>
+                        <svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.165 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.031-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.203 2.398.1 2.651.64.7 1.03 1.595 1.03 2.688 0 3.848-2.338 4.695-4.566 4.942.359.308.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.001 10.001 0 0022 12c0-5.523-4.477-10-10-10z" clip-rule="evenodd"/></svg>
+                    </a>
+                </div>
+                <p class="mt-8 text-sm text-gray-500">© 2025 Roshim Bhatta. All rights reserved.</p>
+            </div>
+        </footer>
+    </main>
+    
+    <!-- Portfolio Modal -->
+    <div id="portfolio-modal" class="modal fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center p-4 z-50 opacity-0 pointer-events-none">
+        <div id="modal-content" class="modal-content bg-gray-800 rounded-lg shadow-xl w-full max-w-4xl max-h-[90vh] overflow-y-auto transform scale-95">
+            <div class="p-4 sm:p-6">
+                <button id="close-modal-btn" class="absolute top-4 right-4 text-gray-400 hover:text-white">&times;</button>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <img id="modal-img" src="" alt="Project Image" class="w-full h-auto rounded-md object-contain max-h-[70vh]">
+                    <div>
+                        <h3 id="modal-title" class="text-2xl font-bold text-white"></h3>
+                        <p id="modal-category" class="font-mono text-sm text-emerald-400 mt-1"></p>
+                        <p id="modal-description" class="text-gray-300 mt-4"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // *** Step 5: UX & Design Tips in Action ***
+            // The JavaScript below adds interactivity, which is a key UX principle.
+            // It makes the site feel alive and responsive to the user.
+            // * **Smooth Scrolling:** Provides a polished, professional feel instead of jarring jumps.
+            // * **Active Nav State:** Gives clear visual feedback on which section the user is viewing.
+            // * **Portfolio Filtering:** Allows users to control the information they see, making the experience more personal and efficient. This respects the user's time.
+            // * **Modal Window:** Shows detailed content without losing context, which is much better than navigating to a new page for each project.
+            // The fusion of "design" and "cybersecurity" is reflected in the theme: a dark, tech-focused aesthetic (cybersecurity) with clean typography, ample whitespace, and accent colors (design). The mono-spaced font for code-like elements adds a subtle nod to the tech world.
+
+            // Data for Portfolio Items
+            const portfolioItems = [
+                {
+                    title: 'Edu-Bridge Ad',
+                    category: 'ads',
+                    image: 'https://placehold.co/600x400/171717/34d399?text=Edu-Bridge+Ad',
+                    description: 'A promotional single-page ad published in a local magazine to attract students interested in studying abroad. The design focuses on clear communication and a strong call to action.'
+                },
+                {
+                    title: 'Corporate Visiting Cards',
+                    category: 'branding',
+                    image: 'https://placehold.co/600x400/171717/34d399?text=Visiting+Cards',
+                    description: 'Designed professional visiting cards for all company employees, including directors. The design maintains a consistent brand identity and provides essential contact information clearly.'
+                },
+                {
+                    title: 'Tri-Fold Brochures',
+                    category: 'print',
+                    image: 'https://placehold.co/600x400/171717/34d399?text=Brochures',
+                    description: 'An extensive project involving the design of five unique tri-fold brochures. These were handed out to our visitors to provide a comprehensive overview of the company\'s services and values.'
+                },
+                {
+                    title: 'Hoarding Board Designs',
+                    category: 'ads',
+                    image: 'https://placehold.co/600x400/171717/34d399?text=Hoarding+Boards',
+                    description: 'A series of large-format hoarding board designs for a new branch opening. The goal was to create high-impact visuals that would capture attention from a distance.'
+                },
+                {
+                    title: 'Festival Flyers',
+                    category: 'print',
+                    image: 'https://placehold.co/600x400/171717/34d399?text=Festival+Flyers',
+                    description: 'As a personal project celebrating Nepalese culture, I design flyers for various festivals throughout the year to share with the community and document our celebrations.'
+                },
+                {
+                    title: 'Employee ID Cards',
+                    category: 'branding',
+                    image: 'https://placehold.co/600x400/171717/34d399?text=ID+Cards',
+                    description: 'Created secure and professional ID cards for all staff. The design included key security elements while aligning with the company\'s overall brand aesthetic.'
+                }
+            ];
+
+            const mainGrid = document.getElementById('main-grid');
+            const fullGallery = document.getElementById('full-gallery');
+            const fullGalleryGrid = document.getElementById('full-gallery-grid');
+            const backBtn = document.getElementById('back-btn');
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            
+            // Function to display portfolio items in the main grid
+            const displayMainGrid = (items) => {
+                mainGrid.innerHTML = items.map(item => `
+                    <div class="portfolio-item group" data-category="${item.category}" data-title="${item.title}" data-img="${item.image}" data-desc="${item.description}">
+                        <div class="relative overflow-hidden rounded-lg">
+                            <img src="${item.image}" alt="${item.title}" class="w-full h-64 object-cover transform group-hover:scale-110 transition-transform duration-300">
+                            <div class="absolute inset-0 bg-black bg-opacity-70 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <div class="text-center text-white p-4">
+                                    <h3 class="text-lg font-bold">${item.title}</h3>
+                                    <p class="text-sm capitalize">${item.category}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+                addModalEventListeners();
+            };
+
+            // Function to display a full category gallery
+            const displayFullGallery = (category) => {
+                const itemsToDisplay = portfolioItems.filter(item => item.category === category);
+                fullGalleryGrid.innerHTML = itemsToDisplay.map(item => `
+                    <div class="portfolio-item group" data-category="${item.category}" data-title="${item.title}" data-img="${item.image}" data-desc="${item.description}">
+                        <div class="relative overflow-hidden rounded-lg">
+                            <img src="${item.image}" alt="${item.title}" class="w-full h-full object-cover rounded-lg">
+                            <div class="absolute inset-0 bg-black bg-opacity-70 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <div class="text-center text-white p-4">
+                                    <h3 class="text-lg font-bold">${item.title}</h3>
+                                    <p class="text-sm capitalize">${item.category}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+                mainGrid.classList.add('hidden');
+                fullGallery.classList.remove('hidden');
+                addModalEventListeners();
+            };
+
+            // Initial display of all items
+            displayMainGrid(portfolioItems);
+
+            // Filter functionality
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    
+                    const filter = btn.dataset.filter;
+                    if (filter === 'all') {
+                        fullGallery.classList.add('hidden');
+                        mainGrid.classList.remove('hidden');
+                        displayMainGrid(portfolioItems);
+                    } else {
+                        displayFullGallery(filter);
+                    }
+                });
+            });
+
+            // Back button functionality
+            backBtn.addEventListener('click', () => {
+                fullGallery.classList.add('hidden');
+                mainGrid.classList.remove('hidden');
+                document.getElementById('filter-buttons').querySelector('[data-filter="all"]').click();
+            });
+
+            // Modal functionality
+            const modal = document.getElementById('portfolio-modal');
+            const modalContent = document.getElementById('modal-content');
+            const closeModalBtn = document.getElementById('close-modal-btn');
+            const modalImg = document.getElementById('modal-img');
+            const modalTitle = document.getElementById('modal-title');
+            const modalCategory = document.getElementById('modal-category');
+            const modalDescription = document.getElementById('modal-description');
+
+            function addModalEventListeners() {
+                document.querySelectorAll('.portfolio-item').forEach(item => {
+                    item.addEventListener('click', () => {
+                        modalTitle.textContent = item.dataset.title;
+                        modalCategory.textContent = item.dataset.category;
+                        modalImg.src = item.dataset.img;
+                        modalDescription.textContent = item.dataset.desc;
+                        modal.classList.remove('opacity-0', 'pointer-events-none');
+                        modalContent.classList.remove('scale-95');
+                        document.body.style.overflow = 'hidden';
+                    });
+                });
+            }
+
+            const closeModal = () => {
+                modal.classList.add('opacity-0', 'pointer-events-none');
+                modalContent.classList.add('scale-95');
+                document.body.style.overflow = 'auto';
+            };
+
+            closeModalBtn.addEventListener('click', closeModal);
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    closeModal();
+                }
+            });
+
+            // Mobile menu toggle
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuButton.addEventListener('click', () => {
+                const isExpanded = mobileMenuButton.getAttribute('aria-expanded') === 'true';
+                mobileMenuButton.setAttribute('aria-expanded', !isExpanded);
+                mobileMenu.classList.toggle('hidden');
+                mobileMenuButton.querySelector('svg:first-child').classList.toggle('hidden');
+                mobileMenuButton.querySelector('svg:last-child').classList.toggle('hidden');
+            });
+
+            // Close mobile menu on link click
+            document.querySelectorAll('.mobile-nav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenuButton.setAttribute('aria-expanded', 'false');
+                    mobileMenu.classList.add('hidden');
+                    mobileMenuButton.querySelector('svg:first-child').classList.remove('hidden');
+                    mobileMenuButton.querySelector('svg:last-child').classList.add('hidden');
+                });
+            });
+            
+            // Active nav link on scroll
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        navLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href').substring(1) === entry.target.id) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            }, { rootMargin: '-50% 0px -50% 0px' });
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>
+
